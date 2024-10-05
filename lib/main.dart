@@ -29,13 +29,15 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
   final TextEditingController _controller = TextEditingController();
   List<String> _toDoList = [];
 
-  void _incrementCounter() {
+  void _addToDoItem() {
     setState(() {
-      _counter++;
+      if (_controller.text.isNotEmpty) {
+        _toDoList.add(_controller.text);
+        _controller.clear();
+      }
     });
   }
 
@@ -64,7 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 const SizedBox(
                     width: 10), // Spacing between TextField and button
                 ElevatedButton(
-                  onPressed: DoNothingAction.new,
+                  onPressed: _addToDoItem,
                   child: const Text('Add Task'),
                 ),
               ],
