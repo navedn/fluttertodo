@@ -50,11 +50,34 @@ class _MyHomePageState extends State<MyHomePage> {
         padding: const EdgeInsets.all(10.0),
         child: Column(
           children: <Widget>[
-            TextField(
-              controller: _controller,
-              decoration: InputDecoration(
-                labelText: 'Enter a task',
-                border: OutlineInputBorder(),
+            Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: _controller,
+                    decoration: InputDecoration(
+                      labelText: 'Enter a task',
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                    width: 10), // Spacing between TextField and button
+                ElevatedButton(
+                  onPressed: DoNothingAction.new,
+                  child: const Text('Add Task'),
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Expanded(
+              child: ListView.builder(
+                itemCount: _toDoList.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text(_toDoList[index]),
+                  );
+                },
               ),
             ),
           ],
